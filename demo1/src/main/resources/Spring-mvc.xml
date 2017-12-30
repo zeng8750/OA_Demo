@@ -22,4 +22,28 @@
 	<mvc:resources location="/WEB-INF/plugs/" mapping="/plugs/**" />
 	<mvc:resources location="/WEB-INF/jsp/" mapping="/jsp/*.html" />
 	<mvc:resources location="/WEB-INF/jsp/" mapping="/jsp/*.json" />
+	
+	<!-- 配置应用 -->
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+		<!-- 配置JOSN -->
+			<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+			<property name="supportedMediaTypes">
+				<list>
+						<value>application/json;charset=UTF-8</value>
+						<value>text/html;charset=UTF-8</value>
+				</list>
+			</property>
+			<property name="features">
+				<list>
+						<!-- 是否显示null值属性 -->
+						<value>WriteMapNullValue</value>
+						<!-- 属性名是否加双引号 -->
+						<value>QuoteFieldNames</value>
+				</list>
+			</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	
 </beans>
